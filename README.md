@@ -5,21 +5,31 @@
 # Development execution
 
 1. Clone repository
-2. Install dependencies
+```
+git clone git@github.com:victorgraciaweb/nestjs-bizaway.git
+```
+
+2. Navigate folder project
+```
+cd nestjs-bizaway
+```
+
+3. Install dependencies
 ```
 yarn install
 ```
-3. Install Nest CLI
-```
-npm i -g @nestjs/cli
-```
 
-5. Clone file ```.env.template``` and rename to ```
+4. Clone file ```.env.template``` and rename to ```
 .env```
 
-6. Fill enviroment variables in ```.env```
+5. Fill enviroment variables in ```.env```
 
-7. Up app in dev:
+6. Up app in dev:
 ```
 yarn start:dev
+```
+
+7. Install Nest CLI (Optional)
+```
+npm i -g @nestjs/cli
 ```
