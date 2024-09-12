@@ -24,7 +24,7 @@ yarn install
 
 5. Fill enviroment variables in ```.env```
 
-6. Up app in dev:
+6. Up app in dev (watch mode):
 ```
 yarn start:dev
 ```
