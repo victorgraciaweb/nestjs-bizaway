@@ -4,7 +4,7 @@ import { CreateTripDto, UpdateTripDto } from './dto';
 
 @Controller('trips')
 export class TripsController {
-  constructor(private readonly tripsService: TripsService) {}
+  constructor(private readonly tripsService: TripsService) { }
 
   @Post()
   create(@Body() createTripDto: CreateTripDto) {
@@ -16,7 +16,12 @@ export class TripsController {
     return this.tripsService.findAll();
   }
 
-  @Get(':id')
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.tripsService.remove(+id);
+  }
+
+  /*@Get(':id')
   findOne(@Param('id') id: string) {
     return this.tripsService.findOne(+id);
   }
@@ -24,10 +29,5 @@ export class TripsController {
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateTripDto: UpdateTripDto) {
     return this.tripsService.update(+id, updateTripDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.tripsService.remove(+id);
-  }
+  }*/
 }
