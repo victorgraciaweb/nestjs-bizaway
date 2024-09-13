@@ -33,3 +33,15 @@ yarn start:dev
 ```
 npm i -g @nestjs/cli
 ```
+
+# Production execution
+
+1. Build
+```
+yarn build
+```
+
+2. Run production
+```
+yarn start:prod
+```
