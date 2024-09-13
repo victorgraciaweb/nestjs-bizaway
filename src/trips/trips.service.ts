@@ -4,6 +4,7 @@ import { Model } from 'mongoose';
 
 import { CreateTripDto } from './dto';
 import { Trip } from './entities/trip.entity';
+import { PaginationDto } from 'src/common/dto/pagination.dto';
 
 @Injectable()
 export class TripsService {
@@ -23,8 +24,16 @@ export class TripsService {
     }
   }
 
-  findAll() {
-    return `This action returns all trips`;
+  findAll(paginationDto: PaginationDto) {
+    const { limit = 5, offset = 0 } = paginationDto;
+
+    return this.tripModel.find()
+    .limit(limit)
+    .skip(offset)
+    .sort({
+      no: 1
+    })
+    .select('-__v')
   }
 
   async remove(id: string) {
@@ -32,7 +41,7 @@ export class TripsService {
     if (deletedCount === 0) {
       throw new BadRequestException(`Trip with id "${id}" not found`);
     }
-    
+
     return { message: 'Trip deleted successfully' };
   }
 
