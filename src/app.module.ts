@@ -14,7 +14,7 @@ import { MongooseModule } from '@nestjs/mongoose';
       load: [EnvConfiguration],
       validationSchema: JoiValidationSchema,
     }),
-    MongooseModule.forRoot('mongodb://localhost:27017/bizaway', {
+    MongooseModule.forRoot(process.env.MONGODB, {
       dbName: 'bizaway',
     }),
     TripsModule, 
