@@ -14,15 +14,19 @@ git clone git@github.com:victorgraciaweb/nestjs-bizaway.git
 cd nestjs-bizaway
 ```
 
+4. Clone file ```.env.template``` and rename to ```
+.env```
+
+```
+cp .env.template .env
+```
+
+5. Fill enviroment variables in ```.env```
+
 3. Install dependencies
 ```
 yarn install
 ```
-
-4. Clone file ```.env.template``` and rename to ```
-.env```
-
-5. Fill enviroment variables in ```.env```
 
 6. Up app in dev (watch mode):
 ```
