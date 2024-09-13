@@ -1,0 +1,1 @@
+export { SearchTripDto } from './search-trip.dto';
