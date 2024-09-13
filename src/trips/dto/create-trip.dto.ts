@@ -26,9 +26,5 @@ export class CreateTripDto {
 
     @IsString()
     @IsNotEmpty()
-    id: string;
-
-    @IsString()
-    @IsNotEmpty()
     display_name: string;
 }
