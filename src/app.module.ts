@@ -6,12 +6,16 @@ import { TripsModule } from './trips/trips.module';
 import { SearchModule } from './search/search.module';
 import { EnvConfiguration } from './config/app.config';
 import { JoiValidationSchema } from './config/joi.validation';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       load: [EnvConfiguration],
       validationSchema: JoiValidationSchema,
+    }),
+    MongooseModule.forRoot('mongodb://localhost:27017/bizaway', {
+      dbName: 'bizaway',
     }),
     TripsModule, 
     SearchModule, 
