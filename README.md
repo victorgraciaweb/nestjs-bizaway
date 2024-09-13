@@ -2,7 +2,11 @@
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
 
-# Development execution
+# Bizaway
+
+RESTful API with NestJS, TypeScript, Docker, and MongoDB, along with other libraries
+
+## Development execution
 
 1. Clone repository
 ```
@@ -28,17 +32,22 @@ cp .env.template .env
 yarn install
 ```
 
-6. Up app in dev (watch mode):
+6. Up Mongo Database
+```
+docker-compose up -d
+```
+
+7. Up app in dev (watch mode):
 ```
 yarn start:dev
 ```
 
-7. Install Nest CLI (Optional)
+8. Install Nest CLI (Optional)
 ```
 npm i -g @nestjs/cli
 ```
 
-# Production execution
+## Production build
 
 1. Build
 ```
@@ -49,3 +58,8 @@ yarn build
 ```
 yarn start:prod
 ```
+
+## Stack usado
+* MongoDB
+* Nest
+* Docker
