@@ -1,26 +1,25 @@
 import { Injectable } from '@nestjs/common';
-import { CreateSearchDto } from './dto/create-search.dto';
-import { UpdateSearchDto } from './dto/update-search.dto';
+import { SearchTripDto } from './dto/search-trip.dto';
 
 @Injectable()
 export class SearchService {
-  create(createSearchDto: CreateSearchDto) {
-    return 'This action adds a new search';
-  }
 
-  findAll() {
-    return `This action returns all search`;
-  }
+  async findTrips(searchTripDto: SearchTripDto) {
+    const { origin, destination, sort_by } = searchTripDto;
 
-  findOne(id: number) {
-    return `This action returns a #${id} search`;
-  }
+    // Llama al API de terceros con los parámetros de origen y destino
+    /*const trips = await this.httpService.get('URL_DE_LA_API_DE_TERCEROS', {
+      params: { origin, destination },
+      headers: { 'x-api-key': 'TU_API_KEY' },
+    }).toPromise();
 
-  update(id: number, updateSearchDto: UpdateSearchDto) {
-    return `This action updates a #${id} search`;
-  }
+    // Ordena los resultados en base al sort_by (duración o costo)
+    if (sort_by === 'fastest') {
+      return trips.data.sort((a, b) => a.duration - b.duration);
+    } else if (sort_by === 'cheapest') {
+      return trips.data.sort((a, b) => a.cost - b.cost);
+    }
 
-  remove(id: number) {
-    return `This action removes a #${id} search`;
+    return trips.data;*/
   }
 }

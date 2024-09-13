@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { SearchService } from './search.service';
 import { SearchTripDto } from './dto/search-trip.dto';
 
@@ -7,12 +7,7 @@ export class SearchController {
   constructor(private readonly searchService: SearchService) {}
 
   @Get()
-  findAll() {
-    return this.searchService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.searchService.findOne(+id);
+  findOne(@Query() searchTripDto: SearchTripDto) {
+    return this.searchService.findTrips(searchTripDto);
   }
 }
