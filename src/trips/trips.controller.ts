@@ -20,14 +20,4 @@ export class TripsController {
   remove(@Param('id') id: string) {
     return this.tripsService.remove(+id);
   }
-
-  /*@Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.tripsService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateTripDto: UpdateTripDto) {
-    return this.tripsService.update(+id, updateTripDto);
-  }*/
 }
