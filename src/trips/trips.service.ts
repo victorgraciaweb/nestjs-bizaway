@@ -31,7 +31,7 @@ export class TripsService {
     .limit(limit)
     .skip(offset)
     .sort({
-      no: 1
+      cost: 1
     })
     .select('-__v')
   }
