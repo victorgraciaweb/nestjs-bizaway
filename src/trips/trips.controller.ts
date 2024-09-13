@@ -1,6 +1,8 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+
 import { TripsService } from './trips.service';
 import { CreateTripDto } from './dto';
+import { ParseMongoIdPipe } from 'src/common/pipes/parse-mongo-id.pipe';
 
 @Controller('trips')
 export class TripsController {
@@ -17,7 +19,7 @@ export class TripsController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.tripsService.remove(+id);
+  remove(@Param('id', ParseMongoIdPipe) id: string) {
+    return this.tripsService.remove(id);
   }
 }
