@@ -29,10 +29,11 @@ export class TripsService {
 
   async remove(id: string) {
     const { deletedCount } = await this.tripModel.deleteOne({ _id: id });
-    if (deletedCount === 0)
+    if (deletedCount === 0) {
       throw new BadRequestException(`Trip with id "${id}" not found`);
-
-    return;
+    }
+    
+    return { message: 'Trip deleted successfully' };
   }
 
   private handleExceptions(error: any) {
