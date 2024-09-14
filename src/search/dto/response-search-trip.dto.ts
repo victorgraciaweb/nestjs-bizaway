@@ -2,6 +2,12 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class ResponseSearchTripDto {
   @ApiProperty({
+    description: 'The unique identifier for the trip',
+    example: 'dedd7b3c-600d-43e5-a579-41c913230aa0'
+  })
+  id: string;
+
+  @ApiProperty({
     description: 'The origin IATA code of the trip',
     example: 'FRA'
   })

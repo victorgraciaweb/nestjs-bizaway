@@ -59,6 +59,7 @@ export class SearchService {
   private mapToResponseSearchTripDto(response: TripsResponse): ResponseSearchTripDto[] {
     return response.map(trip => {
       const tripDto = new ResponseSearchTripDto();
+      tripDto.id = trip.id;
       tripDto.origin = trip.origin;
       tripDto.destination = trip.destination;
       tripDto.cost = trip.cost;
