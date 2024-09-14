@@ -59,6 +59,21 @@ yarn build
 yarn start:prod
 ```
 
+## Postman Collection
+
+To test the API, you can use the provided Postman collection. It includes a set of predefined requests and examples for interacting with the API.
+
+### How to Import
+
+1. Open Postman.
+2. Click on the "Import" button in the top left corner.
+3. Choose the `Bizaway.postman_collection.json` file from the `postman` directory of the repository.
+4. Click "Open" to import the collection.
+
+### Collection Details
+
+The collection includes requests for all major endpoints of the API and examples of different responses. You can use these requests to explore and test the API's functionality.
+
 ## Stack usado
 * MongoDB
 * Nest

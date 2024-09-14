@@ -1,0 +1,174 @@
+{
+	"info": {
+		"_postman_id": "f5980ac0-4769-4892-8906-00e0013077a3",
+		"name": "Bizaway",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31951083"
+	},
+	"item": [
+		{
+			"name": "Get Trips (Original)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "fgy6fd9I316DSDD090Shj4eG1DUxuxpI8sZlAOg1",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://z0qw1e7jpd.execute-api.eu-west-1.amazonaws.com/default/trips?origin=FRA&destination=BCN",
+					"protocol": "https",
+					"host": [
+						"z0qw1e7jpd",
+						"execute-api",
+						"eu-west-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"default",
+						"trips"
+					],
+					"query": [
+						{
+							"key": "origin",
+							"value": "FRA"
+						},
+						{
+							"key": "destination",
+							"value": "BCN"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get trips",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/search?origin=FRA&destination=BCN&sort_by=fastest",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"search"
+					],
+					"query": [
+						{
+							"key": "origin",
+							"value": "FRA"
+						},
+						{
+							"key": "destination",
+							"value": "BCN"
+						},
+						{
+							"key": "sort_by",
+							"value": "fastest"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create trips (Manager)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"origin\": \"FRA\",\n    \"destination\": \"BCN\",\n    \"cost\": 983,\n    \"duration\": 6,\n    \"type\": \"train\",\n    \"display_name\": \"from FRA to BCN by train\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/trips",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"trips"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete trips (Manager)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/trips/66e4b33d2e666fa7c952bbf1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"trips",
+						"66e4b33d2e666fa7c952bbf1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get trips (Manager)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/trips?limit=40&offset=20",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"trips"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "40"
+						},
+						{
+							"key": "offset",
+							"value": "20"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
