@@ -6,9 +6,11 @@ import { Trip, TripSchema } from './entities/trip.entity';
 import { TripCreationService } from './services/trip-creation.service';
 import { TripSearchService } from './services/trip-search.service';
 import { TripRemovalService } from './services/trip-removal.service';
+import { CommonModule } from 'src/common/common.module';
 
 @Module({
   imports: [
+    CommonModule,
     MongooseModule.forFeature([
       {
         name: Trip.name,

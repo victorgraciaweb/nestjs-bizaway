@@ -4,13 +4,15 @@ import { Model } from 'mongoose';
 
 import { Trip } from '../entities/trip.entity';
 import { PaginationDto } from 'src/common/dto/pagination.dto';
+import { ExceptionHandlerService } from 'src/common/services/exception-handler.service';
 
 @Injectable()
 export class TripSearchService {
 
   constructor(
     @InjectModel(Trip.name)
-    private readonly tripModel: Model<Trip>
+    private readonly tripModel: Model<Trip>,
+    private readonly exceptionHandlerService: ExceptionHandlerService
   ) { }
 
   findAll(paginationDto: PaginationDto) {
@@ -23,13 +25,5 @@ export class TripSearchService {
       cost: 1
     })
     .select('-__v')
-  }
-
-  private handleExceptions(error: any) {
-    if (error.code === 11000) {
-      throw new BadRequestException(`Trip exists in db ${JSON.stringify(error.keyValue)}`);
-    }
-    console.log(error);
-    throw new InternalServerErrorException(`Can't create Trip - Check server logs`);
   }
 }

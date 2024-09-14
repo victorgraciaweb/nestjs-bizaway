@@ -3,13 +3,15 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
 import { Trip } from '../entities/trip.entity';
+import { ExceptionHandlerService } from 'src/common/services/exception-handler.service';
 
 @Injectable()
 export class TripRemovalService {
 
   constructor(
     @InjectModel(Trip.name)
-    private readonly tripModel: Model<Trip>
+    private readonly tripModel: Model<Trip>,
+    private readonly exceptionHandlerService: ExceptionHandlerService
   ) { }
 
   async remove(id: string) {
@@ -19,13 +21,5 @@ export class TripRemovalService {
     }
 
     return { message: `Trip with id "${id}" deleted successfully` };
-  }
-
-  private handleExceptions(error: any) {
-    if (error.code === 11000) {
-      throw new BadRequestException(`Trip exists in db ${JSON.stringify(error.keyValue)}`);
-    }
-    console.log(error);
-    throw new InternalServerErrorException(`Can't create Trip - Check server logs`);
   }
 }

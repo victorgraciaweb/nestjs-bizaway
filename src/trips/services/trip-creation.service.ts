@@ -4,13 +4,16 @@ import { Model } from 'mongoose';
 
 import { CreateTripDto } from '../dto';
 import { Trip } from '../entities/trip.entity';
+import { ExceptionHandlerService } from 'src/common/services/exception-handler.service';
+
 
 @Injectable()
 export class TripCreationService {
 
   constructor(
     @InjectModel(Trip.name)
-    private readonly tripModel: Model<Trip>
+    private readonly tripModel: Model<Trip>,
+    private readonly exceptionHandlerService: ExceptionHandlerService
   ) { }
 
   async create(createTripDto: CreateTripDto) {
@@ -19,15 +22,7 @@ export class TripCreationService {
       return trip;
 
     } catch (error) {
-      this.handleExceptions(error);
+      this.exceptionHandlerService.handleExceptions(error);
     }
-  }
-
-  private handleExceptions(error: any) {
-    if (error.code === 11000) {
-      throw new BadRequestException(`Trip exists in db ${JSON.stringify(error.keyValue)}`);
-    }
-    console.log(error);
-    throw new InternalServerErrorException(`Can't create Trip - Check server logs`);
   }
 }
