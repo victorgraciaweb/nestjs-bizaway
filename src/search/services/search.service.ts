@@ -5,6 +5,7 @@ import { SearchTripDto } from '../dto';
 import { AxiosAdapter } from 'src/common/adapters/axios.adapter';
 import { TripsResponse } from '../interfaces/trips-response.interface';
 import { ExceptionHandlerService } from 'src/common/services/exception-handler.service';
+import { ResponseSearchTripDto } from '../dto/response-search-trip.dto';
 
 @Injectable()
 export class SearchService {
@@ -20,7 +21,7 @@ export class SearchService {
     this.apiKeyBizaway = this.configService.get<string>('apiKeyBizaway');
   }
 
-  async findTrips(searchTripDto: SearchTripDto): Promise<TripsResponse> {
+  async findTrips(searchTripDto: SearchTripDto): Promise<ResponseSearchTripDto[]> {
     try {
       const { origin, destination, sort_by } = searchTripDto;
 
@@ -34,7 +35,10 @@ export class SearchService {
         }
       });
 
-      return this.sortTrips(response, sort_by);
+      const trips = this.sortTrips(response, sort_by);
+
+      return this.mapToResponseSearchTripDto(trips); 
+
     } catch (error) {
       this.exceptionHandler.handleExceptions(error);
     }
@@ -49,6 +53,20 @@ export class SearchService {
       } else {
         return 0;
       }
+    });
+  }
+
+  private mapToResponseSearchTripDto(response: TripsResponse): ResponseSearchTripDto[] {
+    return response.map(trip => {
+      const tripDto = new ResponseSearchTripDto();
+      tripDto.origin = trip.origin;
+      tripDto.destination = trip.destination;
+      tripDto.cost = trip.cost;
+      tripDto.duration = trip.duration;
+      tripDto.type = trip.type;
+      tripDto.display_name = trip.display_name;
+
+      return tripDto;
     });
   }
 }

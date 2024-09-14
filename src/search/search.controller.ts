@@ -26,7 +26,7 @@ export class SearchController {
     description: 'Bad request if query parameters are invalid.',
     type: ErrorDto,
   })
-  findTrips(@Query() searchTripDto: SearchTripDto) {
+  findTrips(@Query() searchTripDto: SearchTripDto): Promise<ResponseSearchTripDto[]> {
     return this.searchService.findTrips(searchTripDto);
   }
 }
