@@ -8,7 +8,6 @@ export const JoiValidationSchema = Joi.object({
     TITLE_SWAGGER: Joi.string().required(),
     DESCRIPTION_SWAGGER: Joi.string().required(),
     VERSION_SWAGGER: Joi.string().required(),
-    TAG_SWAGGER: Joi.string().required(),
     URL_BIZAWAY: Joi.string().required(),
     API_KEY_BIZAWAY: Joi.string().required()
 })

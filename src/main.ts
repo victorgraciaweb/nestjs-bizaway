@@ -19,7 +19,6 @@ async function bootstrap() {
   const titleSwagger = configService.get<string>('TITLE_SWAGGER');
   const descriptionSwagger = configService.get<string>('DESCRIPTION_SWAGGER');
   const versionSwagger = configService.get<string>('VERSION_SWAGGER');
-  const tagSwagger = configService.get<string>('TAG_SWAGGER');
 
   app.setGlobalPrefix(globalPrefix);
   
@@ -42,7 +41,6 @@ async function bootstrap() {
     .setTitle(titleSwagger)
     .setDescription(descriptionSwagger)
     .setVersion(versionSwagger)
-    .addTag(tagSwagger)
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup(globalPrefix, app, document);
