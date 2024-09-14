@@ -6,11 +6,6 @@ import { SearchTripDto } from './dto';
 export class SearchController {
   constructor(private readonly searchService: SearchService) {}
 
-  /**
-   * Finds trips that match the search criteria.
-   * @param searchTripDto - Object containing the search criteria.
-   * @returns An array of trips that match the search criteria.
-   */
   @Get()
   findTrips(@Query() searchTripDto: SearchTripDto) {
     return this.searchService.findTrips(searchTripDto);

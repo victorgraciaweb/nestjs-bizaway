@@ -5,6 +5,10 @@ export const JoiValidationSchema = Joi.object({
     PORT: Joi.number().default(3000),
     CORS_ENABLED: Joi.boolean().default(true),
     MONGODB: Joi.string().required(),
+    TITLE_SWAGGER: Joi.string().required(),
+    DESCRIPTION_SWAGGER: Joi.string().required(),
+    VERSION_SWAGGER: Joi.string().required(),
+    TAG_SWAGGER: Joi.string().required(),
     URL_BIZAWAY: Joi.string().required(),
     API_KEY_BIZAWAY: Joi.string().required()
 })

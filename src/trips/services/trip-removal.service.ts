@@ -22,7 +22,6 @@ export class TripRemovalService {
       }
       return { message: `Trip with id "${id}" deleted successfully` };
     } catch (error) {
-      // Delegar el manejo de excepciones al ExceptionHandlerService
       this.exceptionHandlerService.handleExceptions(error);
     }
   }
