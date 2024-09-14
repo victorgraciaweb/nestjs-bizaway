@@ -5,7 +5,6 @@ export const EnvConfiguration = () => ({
     titleSwagger: process.env.TITLE_SWAGGER,
     descriptionSwagger: process.env.DESCRIPTION_SWAGGER,
     versionSwagger: process.env.VERSION_SWAGGER,
-    tagSwagger: process.env.TAG_SWAGGER,
     mongodb: process.env.MONGODB,
     urlBizaway: process.env.URL_BIZAWAY,
     apiKeyBizaway: process.env.API_KEY_BIZAWAY
