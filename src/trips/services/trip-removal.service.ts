@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
@@ -15,11 +15,15 @@ export class TripRemovalService {
   ) { }
 
   async remove(id: string) {
-    const { deletedCount } = await this.tripModel.deleteOne({ _id: id });
-    if (deletedCount === 0) {
-      throw new BadRequestException(`Trip with id "${id}" not found`);
+    try {
+      const { deletedCount } = await this.tripModel.deleteOne({ _id: id });
+      if (deletedCount === 0) {
+        throw new NotFoundException(`Trip with id "${id}" not found`);
+      }
+      return { message: `Trip with id "${id}" deleted successfully` };
+    } catch (error) {
+      // Delegar el manejo de excepciones al ExceptionHandlerService
+      this.exceptionHandlerService.handleExceptions(error);
     }
-
-    return { message: `Trip with id "${id}" deleted successfully` };
   }
 }
