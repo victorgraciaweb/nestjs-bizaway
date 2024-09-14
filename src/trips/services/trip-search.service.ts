@@ -5,6 +5,7 @@ import { Model } from 'mongoose';
 import { Trip } from '../entities/trip.entity';
 import { PaginationDto } from 'src/common/dto/pagination.dto';
 import { ExceptionHandlerService } from 'src/common/services/exception-handler.service';
+import { ResponseCreateTripDto } from '../dto/response-create-trip.dto';
 
 @Injectable()
 export class TripSearchService {
@@ -15,7 +16,7 @@ export class TripSearchService {
     private readonly exceptionHandlerService: ExceptionHandlerService
   ) { }
 
-  async findAll(paginationDto: PaginationDto) {
+  async findAll(paginationDto: PaginationDto): Promise<ResponseCreateTripDto[]> {
     const { limit = 5, offset = 0 } = paginationDto;
 
     try {
@@ -23,11 +24,24 @@ export class TripSearchService {
         .limit(limit)
         .skip(offset)
         .sort({ cost: 1 })
-        .select('-__v');
+        
+        return trips.map(trip => this.mapToResponseCreateTripDto(trip));
 
-      return trips;
     } catch (error) {
       this.exceptionHandlerService.handleExceptions(error);
     }
+  }
+
+  private mapToResponseCreateTripDto(trip: Trip): ResponseCreateTripDto {
+    const responseDto = new ResponseCreateTripDto();
+    responseDto._id = trip._id.toString();
+    responseDto.origin = trip.origin;
+    responseDto.destination = trip.destination;
+    responseDto.cost = trip.cost;
+    responseDto.duration = trip.duration;
+    responseDto.type = trip.type;
+    responseDto.display_name = trip.display_name;
+
+    return responseDto;
   }
 }

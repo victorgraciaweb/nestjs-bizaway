@@ -31,7 +31,7 @@ export class TripsController {
     description: 'Bad request if query parameters are invalid.',
     type: ErrorDto,
   })
-  create(@Body() createTripDto: CreateTripDto) {
+  create(@Body() createTripDto: CreateTripDto): Promise<ResponseCreateTripDto> {
     return this.tripCreationService.create(createTripDto);
   }
 
@@ -50,7 +50,7 @@ export class TripsController {
     description: 'Bad request if query parameters are invalid.',
     type: ErrorDto,
   })
-  findAll(@Query() paginationDto: PaginationDto) {
+  findAll(@Query() paginationDto: PaginationDto): Promise<ResponseCreateTripDto[]> {
     return this.tripSearchService.findAll(paginationDto);
   }
 

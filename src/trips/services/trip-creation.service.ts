@@ -5,6 +5,7 @@ import { Model } from 'mongoose';
 import { CreateTripDto } from '../dto';
 import { Trip } from '../entities/trip.entity';
 import { ExceptionHandlerService } from 'src/common/services/exception-handler.service';
+import { ResponseCreateTripDto } from '../dto/response-create-trip.dto';
 
 
 @Injectable()
@@ -16,17 +17,29 @@ export class TripCreationService {
     private readonly exceptionHandlerService: ExceptionHandlerService
   ) { }
 
-  async create(createTripDto: CreateTripDto) {
+  async create(createTripDto: CreateTripDto): Promise<ResponseCreateTripDto> {
     try {
       const trip = await this.tripModel.create(createTripDto);
 
-      const tripObject = trip.toObject();
-      delete tripObject.__v;
+      const responseDto = this.mapToResponseCreateTripDto(trip);
 
-      return tripObject;
+      return responseDto;
 
     } catch (error) {
       this.exceptionHandlerService.handleExceptions(error);
     }
+  }
+
+  private mapToResponseCreateTripDto(trip: Trip): ResponseCreateTripDto {
+    const responseDto = new ResponseCreateTripDto();
+    responseDto._id = trip._id.toString();
+    responseDto.origin = trip.origin;
+    responseDto.destination = trip.destination;
+    responseDto.cost = trip.cost;
+    responseDto.duration = trip.duration;
+    responseDto.type = trip.type;
+    responseDto.display_name = trip.display_name;
+
+    return responseDto;
   }
 }
