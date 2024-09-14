@@ -1,12 +1,10 @@
-import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
-import { CreateTripDto } from '../dto';
+import { CreateTripDto, ResponseCreateTripDto } from '../dto';
 import { Trip } from '../entities/trip.entity';
 import { ExceptionHandlerService } from 'src/common/services/exception-handler.service';
-import { ResponseCreateTripDto } from '../dto/response-create-trip.dto';
-
 
 @Injectable()
 export class TripCreationService {

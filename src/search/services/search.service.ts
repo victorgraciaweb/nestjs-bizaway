@@ -1,11 +1,10 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
-import { SearchTripDto } from '../dto';
+import { SearchTripDto, ResponseSearchTripDto } from '../dto';
 import { AxiosAdapter } from 'src/common/adapters/axios.adapter';
 import { TripsResponse } from '../interfaces/trips-response.interface';
 import { ExceptionHandlerService } from 'src/common/services/exception-handler.service';
-import { ResponseSearchTripDto } from '../dto/response-search-trip.dto';
 
 @Injectable()
 export class SearchService {
