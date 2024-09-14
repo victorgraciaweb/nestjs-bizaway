@@ -1,4 +1,5 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
+import { ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 import { CreateTripDto } from './dto';
 import { ParseMongoIdPipe } from 'src/common/pipes/parse-mongo-id.pipe';
@@ -6,7 +7,8 @@ import { PaginationDto } from 'src/common/dto/pagination.dto';
 import { TripCreationService } from './services/trip-creation.service';
 import { TripSearchService } from './services/trip-search.service';
 import { TripRemovalService } from './services/trip-removal.service';
-import { ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ErrorDto } from 'src/common/dto/error.dto';
+import { ResponseCreateTripDto } from './dto/response-create-trip.dto';
 
 @ApiTags('Trips Management')
 @Controller('trips')
@@ -19,8 +21,16 @@ export class TripsController {
 
   @Post()
   @ApiOperation({ summary: 'Create a new trip' })
-  @ApiResponse({ status: 201, description: 'The trip has been successfully created.' })
-  @ApiResponse({ status: 400, description: 'Bad request if query parameters are invalid.' })
+  @ApiResponse({ 
+    status: 201, 
+    description: 'The trip has been successfully created.',
+    type: ResponseCreateTripDto,
+  })
+  @ApiResponse({ 
+    status: 400, 
+    description: 'Bad request if query parameters are invalid.',
+    type: ErrorDto,
+  })
   create(@Body() createTripDto: CreateTripDto) {
     return this.tripCreationService.create(createTripDto);
   }
@@ -29,8 +39,17 @@ export class TripsController {
   @ApiOperation({ summary: 'Get a list of trips with pagination' })
   @ApiQuery({ name: 'limit', required: false, type: Number, description: 'Number of items per page' })
   @ApiQuery({ name: 'offset', required: false, type: Number, description: 'Page number' })
-  @ApiResponse({ status: 200, description: 'List of trips' })
-  @ApiResponse({ status: 400, description: 'Bad request if query parameters are invalid.' })
+  @ApiResponse({ 
+    status: 200, 
+    description: 'List of trips',
+    type: ResponseCreateTripDto, 
+    isArray: true,
+  })
+  @ApiResponse({ 
+    status: 400, 
+    description: 'Bad request if query parameters are invalid.',
+    type: ErrorDto,
+  })
   findAll(@Query() paginationDto: PaginationDto) {
     return this.tripSearchService.findAll(paginationDto);
   }
@@ -38,9 +57,25 @@ export class TripsController {
   @Delete(':id')
   @ApiOperation({ summary: 'Delete a trip by ID' })
   @ApiParam({ name: 'id', type: String, description: 'ID of the trip to be deleted' })
-  @ApiResponse({ status: 200, description: 'The trip has been successfully deleted.' })
-  @ApiResponse({ status: 400, description: 'Bad request if query parameters are invalid.' })
-  @ApiResponse({ status: 404, description: 'Trip not found.' })
+  @ApiResponse({ 
+    status: 200, 
+    description: 'The trip has been successfully deleted.',
+    schema: {
+      example: {
+        message: 'Trip with id ":id" deleted successfully',
+      },
+    },
+  })
+  @ApiResponse({ 
+    status: 400, 
+    description: 'Bad request if query parameters are invalid.',
+    type: ErrorDto,
+  })
+  @ApiResponse({ 
+    status: 404, 
+    description: 'Bad request if query parameters are invalid.',
+    type: ErrorDto,
+  })
   remove(@Param('id', ParseMongoIdPipe) id: string) {
     return this.tripRemovalService.remove(id);
   }

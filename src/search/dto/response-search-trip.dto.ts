@@ -2,12 +2,6 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class ResponseSearchTripDto {
   @ApiProperty({
-    description: 'The unique identifier of the trip',
-    example: '605c72ef3f1b2c001f4e3c6b'
-  })
-  id: string;
-
-  @ApiProperty({
     description: 'The origin IATA code of the trip',
     example: 'FRA'
   })
@@ -42,16 +36,4 @@ export class ResponseSearchTripDto {
     example: 'FRA to LAX Trip'
   })
   display_name: string;
-
-  @ApiProperty({
-    description: 'The creation timestamp of the trip',
-    example: '2024-09-14T12:34:56.789Z'
-  })
-  createdAt: Date;
-
-  @ApiProperty({
-    description: 'The last update timestamp of the trip',
-    example: '2024-09-15T12:34:56.789Z'
-  })
-  updatedAt: Date;
 }
