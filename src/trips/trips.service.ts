@@ -42,7 +42,7 @@ export class TripsService {
       throw new BadRequestException(`Trip with id "${id}" not found`);
     }
 
-    return { message: 'Trip deleted successfully' };
+    return { message: `Trip with id "${id}" deleted successfully` };
   }
 
   private handleExceptions(error: any) {
