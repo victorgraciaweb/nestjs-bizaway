@@ -34,7 +34,7 @@ yarn install
 
 6. Up Mongo Database
 ```
-docker-compose up -d
+docker compose up -d
 ```
 
 7. Up app in dev (watch mode):
