@@ -15,15 +15,20 @@ export class TripSearchService {
     private readonly exceptionHandlerService: ExceptionHandlerService
   ) { }
 
-  findAll(paginationDto: PaginationDto) {
+  async findAll(paginationDto: PaginationDto) {
     const { limit = 5, offset = 0 } = paginationDto;
 
-    return this.tripModel.find()
-    .limit(limit)
-    .skip(offset)
-    .sort({
-      cost: 1
-    })
-    .select('-__v')
+    try {
+      const trips = await this.tripModel.find()
+        .limit(limit)
+        .skip(offset)
+        .sort({ cost: 1 })
+        .select('-__v');
+
+      return trips;
+    } catch (error) {
+      this.exceptionHandlerService.handleExceptions(error);
+      throw new InternalServerErrorException('Failed to retrieve trips');
+    }
   }
 }
