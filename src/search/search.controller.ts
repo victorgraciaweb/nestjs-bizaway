@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
-import { SearchService } from './search.service';
+import { SearchService } from './services/search.service';
 import { SearchTripDto } from './dto';
 
 @Controller('search')

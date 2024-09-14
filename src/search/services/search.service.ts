@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
-import { SearchTripDto } from './dto';
+import { SearchTripDto } from '../dto';
 import { AxiosAdapter } from 'src/common/adapters/axios.adapter';
-import { TripsResponse } from './interfaces/trips-response.interface';
+import { TripsResponse } from '../interfaces/trips-response.interface';
 
 @Injectable()
 export class SearchService {
