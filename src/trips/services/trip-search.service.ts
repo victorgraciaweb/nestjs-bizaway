@@ -28,7 +28,6 @@ export class TripSearchService {
       return trips;
     } catch (error) {
       this.exceptionHandlerService.handleExceptions(error);
-      throw new InternalServerErrorException('Failed to retrieve trips');
     }
   }
 }
