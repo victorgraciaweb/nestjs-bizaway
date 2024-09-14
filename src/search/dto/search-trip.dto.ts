@@ -14,5 +14,5 @@ export class SearchTripDto {
 
   @IsOptional()
   @IsIn(['cheapest', 'fastest'], { message: 'Sort by must be either "cheapest" or "fastest".' })
-  sort_by?: string;
+  sort_by?: 'fastest' | 'cheapest';
 }

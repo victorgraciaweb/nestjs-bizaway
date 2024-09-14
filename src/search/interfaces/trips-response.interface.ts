@@ -3,9 +3,9 @@ export interface Trip {
     destination: string;
     cost: number;
     duration: number;
-    type: string;
+    type: string; 
     id: string;
     display_name: string;
-}
-
-export type TripsResponse = Trip[];
+  }
+  
+  export type TripsResponse = Trip[];
