@@ -47,6 +47,21 @@ yarn start:dev
 npm i -g @nestjs/cli
 ```
 
+## API Documentation
+
+This project includes API documentation using Swagger. You can access it to explore the available endpoints and test them.
+
+### Swagger URL
+
+After starting the application, you can access the Swagger documentation at the following URL:
+
+[http://localhost:3000/api/v1](http://localhost:3000/api/v1)
+
+Make sure to replace `<PORT>` with the actual port defined in your `.env` file (e.g., `3000` if using the default port).
+
+Swagger provides a convenient interface to view all available routes and schemas.
+
+
 ## Production build
 
 1. Build
