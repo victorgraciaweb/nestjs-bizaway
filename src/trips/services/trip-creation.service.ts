@@ -19,7 +19,11 @@ export class TripCreationService {
   async create(createTripDto: CreateTripDto) {
     try {
       const trip = await this.tripModel.create(createTripDto);
-      return trip;
+
+      const tripObject = trip.toObject();
+      delete tripObject.__v;
+
+      return tripObject;
 
     } catch (error) {
       this.exceptionHandlerService.handleExceptions(error);
