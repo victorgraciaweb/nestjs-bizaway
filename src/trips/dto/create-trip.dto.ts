@@ -5,7 +5,7 @@ import { IsIataCode } from "src/common/validators/iata-code.validator";
 export class CreateTripDto {
     @ApiProperty({
         description: 'The origin IATA code of the trip',
-        example: 'NYC'
+        example: 'FRA'
     })
     @IsString()
     @Length(3, 3, { message: 'Origin must be exactly 3 characters long.' })
@@ -47,7 +47,7 @@ export class CreateTripDto {
 
     @ApiProperty({
         description: 'The display name of the trip',
-        example: 'NYC to LAX Trip'
+        example: 'FRA to LAX Trip'
     })
     @IsString()
     @IsNotEmpty()
