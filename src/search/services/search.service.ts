@@ -4,6 +4,7 @@ import { ConfigService } from '@nestjs/config';
 import { SearchTripDto } from '../dto';
 import { AxiosAdapter } from 'src/common/adapters/axios.adapter';
 import { TripsResponse } from '../interfaces/trips-response.interface';
+import { ExceptionHandlerService } from 'src/common/services/exception-handler.service';
 
 @Injectable()
 export class SearchService {
@@ -12,7 +13,8 @@ export class SearchService {
 
   constructor(
     private readonly http: AxiosAdapter,
-    private readonly configService: ConfigService
+    private readonly configService: ConfigService,
+    private readonly exceptionHandler: ExceptionHandlerService
   ) { 
     this.urlBizaway = this.configService.get<string>('urlBizaway');
     this.apiKeyBizaway = this.configService.get<string>('apiKeyBizaway');
@@ -34,8 +36,7 @@ export class SearchService {
 
       return this.sortTrips(response, sort_by);
     } catch (error) {
-      console.error('Error fetching trips:', error);
-      throw new InternalServerErrorException('Error fetching trips from the external API');
+      this.exceptionHandler.handleExceptions(error);
     }
   }
 
