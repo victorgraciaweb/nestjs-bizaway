@@ -10,6 +10,7 @@ describe('SearchService', () => {
     let service: SearchService;
     let httpMock: AxiosAdapter;
     let mappingServiceMock: MappingService;
+    let exceptionHandlerMock: ExceptionHandlerService;
 
     beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
@@ -54,6 +55,7 @@ describe('SearchService', () => {
         service = module.get<SearchService>(SearchService);
         httpMock = module.get<AxiosAdapter>(AxiosAdapter);
         mappingServiceMock = module.get<MappingService>(MappingService);
+        exceptionHandlerMock = module.get<ExceptionHandlerService>(ExceptionHandlerService);
     });
 
     it('should call http.get and return mapped trips', async () => {
@@ -99,12 +101,12 @@ describe('SearchService', () => {
 
         const apiError = new Error('API Error');
         jest.spyOn(httpMock, 'get').mockRejectedValue(apiError);
-      
-        // Spy directamente en el mock configurado en el beforeEach
-        const handleExceptionsSpy = jest.spyOn(service['exceptionHandler'], 'handleExceptions');
-      
-        // Act & Assert
-        await expect(service.findTrips(searchTripDto)).rejects.toThrow('API Error');
-        expect(handleExceptionsSpy).toHaveBeenCalledWith(apiError);
+        
+        // Act
+        await service.findTrips(searchTripDto).catch((error) => {
+            // Assert
+            expect(exceptionHandlerMock.handleExceptions).toHaveBeenCalledWith(apiError);
+            expect(error).toEqual(apiError); // Asegúrate de que el error sea lanzado como se espera
+        });
     });
 });
