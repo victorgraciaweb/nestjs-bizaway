@@ -61,6 +61,16 @@ Make sure to replace `<PORT>` with the actual port defined in your `.env` file (
 
 Swagger provides a convenient interface to view all available routes and schemas.
 
+## Run Tests
+
+To execute the tests, use the following commands (without and with coverage):
+
+```
+yarn test
+```
+```
+yarn test:cov
+```
 
 ## Production build
 
