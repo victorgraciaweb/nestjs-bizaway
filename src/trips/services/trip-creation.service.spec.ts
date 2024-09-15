@@ -67,10 +67,8 @@ describe('TripCreationService', () => {
     jest.spyOn(tripModel, 'create').mockResolvedValue(createdTrip as any);
     jest.spyOn(mappingServiceMock, 'mapToResponseCreateTripDto').mockReturnValue(responseDto);
 
-    // Act
     const result = await service.create(createTripDto);
 
-    // Assert
     expect(tripModel.create).toHaveBeenCalledWith(createTripDto);
     expect(mappingServiceMock.mapToResponseCreateTripDto).toHaveBeenCalledWith(createdTrip);
     expect(result).toEqual(responseDto);

@@ -19,7 +19,7 @@ describe('SearchService', () => {
                 {
                     provide: AxiosAdapter,
                     useValue: {
-                        get: jest.fn(), // Mock de AxiosAdapter
+                        get: jest.fn(),
                     },
                 },
                 {
@@ -59,7 +59,6 @@ describe('SearchService', () => {
     });
 
     it('should call http.get and return mapped trips', async () => {
-        // Arrange
         const searchTripDto: SearchTripDto = {
             origin: 'NYC',
             destination: 'LAX',
@@ -79,10 +78,8 @@ describe('SearchService', () => {
         jest.spyOn(httpMock, 'get').mockResolvedValue(mockResponse);
         jest.spyOn(mappingServiceMock, 'mapToResponseSearchTripDto').mockReturnValue(mappedResponse);
 
-        // Act
         const result = await service.findTrips(searchTripDto);
 
-        // Assert
         expect(httpMock.get).toHaveBeenCalledWith('http://api.bizaway.com/trips', {
             headers: { 'x-api-key': 'dummy-api-key' },
             params: { origin: 'NYC', destination: 'LAX' },
@@ -93,7 +90,6 @@ describe('SearchService', () => {
 
 
     it('should call http.get and return mapped trips', async () => {
-        // Arrange
         const searchTripDto: SearchTripDto = {
             origin: 'NYC',
             destination: 'LAX',
@@ -113,10 +109,8 @@ describe('SearchService', () => {
         jest.spyOn(httpMock, 'get').mockResolvedValue(mockResponse);
         jest.spyOn(mappingServiceMock, 'mapToResponseSearchTripDto').mockReturnValue(mappedResponse);
 
-        // Act
         const result = await service.findTrips(searchTripDto);
 
-        // Assert
         expect(httpMock.get).toHaveBeenCalledWith('http://api.bizaway.com/trips', {
             headers: { 'x-api-key': 'dummy-api-key' },
             params: { origin: 'NYC', destination: 'LAX' },
@@ -125,9 +119,7 @@ describe('SearchService', () => {
         expect(result).toEqual(mappedResponse);
     });
 
-
     it('should call ExceptionHandlerService on error', async () => {
-        // Arrange
         const searchTripDto: SearchTripDto = {
             origin: 'NYC',
             destination: 'LAX',
@@ -137,9 +129,7 @@ describe('SearchService', () => {
         const apiError = new Error('API Error');
         jest.spyOn(httpMock, 'get').mockRejectedValue(apiError);
         
-        // Act
         await service.findTrips(searchTripDto).catch((error) => {
-            // Assert
             expect(exceptionHandlerMock.handleExceptions).toHaveBeenCalledWith(apiError);
             expect(error).toEqual(apiError); // Asegúrate de que el error sea lanzado como se espera
         });
