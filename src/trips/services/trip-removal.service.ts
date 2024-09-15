@@ -16,7 +16,7 @@ export class TripRemovalService {
 
   async remove(id: string) {
     try {
-      const { deletedCount } = await this.tripModel.deleteOne({ _id: id }).exec();
+      const { deletedCount } = await this.tripModel.deleteOne({ _id: id });
       if (deletedCount === 0) {
         this.exceptionHandlerService.handleExceptions(new NotFoundException(`Trip with id "${id}" not found`));
       }
