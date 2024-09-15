@@ -58,7 +58,7 @@ describe('SearchService', () => {
         exceptionHandlerMock = module.get<ExceptionHandlerService>(ExceptionHandlerService);
     });
 
-    it('should call http.get and return mapped trips', async () => {
+    it('should call http.get and return mapped trips - fastest', async () => {
         const searchTripDto: SearchTripDto = {
             origin: 'NYC',
             destination: 'LAX',
@@ -89,7 +89,7 @@ describe('SearchService', () => {
     });
 
 
-    it('should call http.get and return mapped trips', async () => {
+    it('should call http.get and return mapped trips - cheapest', async () => {
         const searchTripDto: SearchTripDto = {
             origin: 'NYC',
             destination: 'LAX',
