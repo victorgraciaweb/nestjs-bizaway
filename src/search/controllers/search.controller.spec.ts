@@ -1,10 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { SearchController } from '../controllers/search.controller';
+import { SearchController } from './search.controller';
 import { SearchService } from '../services/search.service';
 import { SearchTripDto, ResponseSearchTripDto } from '../dto';
-import { NotFoundException, BadRequestException } from '@nestjs/common';
-import { ErrorDto } from 'src/common/dto/error.dto';
-
+import { BadRequestException } from '@nestjs/common';
 describe('SearchController', () => {
   let controller: SearchController;
   let service: SearchService;
