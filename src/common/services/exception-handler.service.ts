@@ -12,8 +12,6 @@ export class ExceptionHandlerService {
     } else if (error.response && error.response.status === 409) {
       throw new ConflictException('Conflict occurred with the request');
     }
-
-    console.error('Unexpected error:', error);
     throw new InternalServerErrorException('An unexpected error occurred - Check server logs for details');
   }
 }
