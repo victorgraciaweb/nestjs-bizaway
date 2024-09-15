@@ -1,12 +1,12 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 
-import { CreateTripDto, ResponseCreateTripDto } from './dto';
+import { CreateTripDto, ResponseCreateTripDto } from '../dto';
 import { ParseMongoIdPipe } from 'src/common/pipes/parse-mongo-id.pipe';
 import { PaginationDto } from 'src/common/dto/pagination.dto';
-import { TripCreationService } from './services/trip-creation.service';
-import { TripSearchService } from './services/trip-search.service';
-import { TripRemovalService } from './services/trip-removal.service';
+import { TripCreationService } from '../services/trip-creation.service';
+import { TripSearchService } from '../services/trip-search.service';
+import { TripRemovalService } from '../services/trip-removal.service';
 import { ErrorDto } from 'src/common/dto/error.dto';
 
 @ApiTags('Trips Management')

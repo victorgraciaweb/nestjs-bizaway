@@ -1,9 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { TripsController } from './trips.controller';
-import { TripCreationService } from './services/trip-creation.service';
-import { TripSearchService } from './services/trip-search.service';
-import { TripRemovalService } from './services/trip-removal.service';
-import { CreateTripDto, ResponseCreateTripDto } from './dto';
+import { TripCreationService } from '../services/trip-creation.service';
+import { TripSearchService } from '../services/trip-search.service';
+import { TripRemovalService } from '../services/trip-removal.service';
+import { CreateTripDto, ResponseCreateTripDto } from '../dto';
 import { PaginationDto } from 'src/common/dto/pagination.dto';
 
 describe('TripsController', () => {
