@@ -14,7 +14,6 @@ describe('TripSearchService', () => {
   let exceptionHandlerService: ExceptionHandlerService;
   let mappingService: MappingService;
 
-  // Mock implementations
   const mockFind = jest.fn().mockReturnThis();
   const mockSort = jest.fn().mockResolvedValue([
     { _id: '66e54f4746c7e4cffbbe5cc9', origin: 'FRA', destination: 'BCN', cost: 456, duration: 6, type: 'train', display_name: 'from FRA to BCN by train' },
@@ -62,7 +61,6 @@ describe('TripSearchService', () => {
 
       const result: ResponseCreateTripDto[] = await service.findAll(paginationDto);
 
-      // Verifications
       expect(mockFind).toHaveBeenCalled();
       expect(mockLimit).toHaveBeenCalledWith(paginationDto.limit);
       expect(mockSkip).toHaveBeenCalledWith(paginationDto.offset);
